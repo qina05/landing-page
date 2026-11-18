@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroberry Taqina Beauty | Skincare & Makeup Estetik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pastel-pink: #FFD1DC;
+            --deep-pink: #FF9EAA;
+            --pastel-green: #C1E1C1;
+            --deep-green: #88B088;
+            --text-dark: #4A4A4A;
+            --text-light: #7A7A7A;
+            --white: #FFFFFF;
+            --shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #FFFBFC;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Animasi Bunga Lily & Stroberi Mengambang --- */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.4;
+            animation: floatUp 15s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Navbar --- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1rem 5%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-pink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-green);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--deep-pink);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pastel-green) 100%);
+            border-radius: 0 0 50px 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--deep-pink);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 158, 170, 0.4);
+        }
+
+        /* --- About Section --- */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--deep-green);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🌸';
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Products Section --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 209, 220, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: var(--pastel-pink);
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--deep-green);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            margin: 0.3rem 0;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-pink);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-review {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+            border-top: 1px dashed var(--pastel-pink);
+            padding-top: 0.8rem;
+        }
+
+        .product-review i {
+            color: #FFD700;
+            margin-right: 4px;
+        }
+
+        /* --- Testimonials Carousel --- */
+        .testimonial-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .testimonial-slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--deep-pink);
+        }
+
+        .carousel-controls {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .carousel-btn {
+            background: var(--pastel-green);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--deep-green);
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: var(--deep-green);
+            color: white;
+        }
+
+        /* --- Contact Form --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--pastel-pink);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--deep-green);
+        }
+
+        .error-message {
+            color: #ff4757;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .success-message {
+            background: var(--pastel-green);
+            color: var(--deep-green);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 5% 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--pastel-pink);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--pastel-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #666;
+            padding-top: 1.5rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .product-img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animasi Background -->
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav>
+            <a href="#" class="logo">🍓 Stroberry Taqina Beauty</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#testimonials">Ulasan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Cantik Alami dengan Sentuhan Stroberry & Matcha</h1>
+        <p>Temukan rangkaian produk skincare dan makeup estetik yang aman, lembut di kulit, dan membuatmu bersinar setiap hari.</p>
+        <a href="#products" class="btn-cta">Pesan Sekarang 🌸</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">Tentang Stroberry Taqina Beauty</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" alt="Skincare Aesthetic">
+            </div>
+            <div class="about-text">
+                <h3>Perawatan Kulit dengan Cinta</h3>
+                <p>Stroberry Taqina Beauty hadir untuk menemani perjalanan kecantikanku dengan produk-produk pilihan berkualitas tinggi. Mengusung tema <em>Strawberry Matcha</em>, kami percaya bahwa kecantikan haruslah menyegarkan, alami, dan penuh kehangatan.</p>
+                <br>
+                <p>Berlokasi di Sumberagung, Rejotangan, Tulungagung, kami berkomitmen memberikan pelayanan terbaik dan produk yang sudah teruji aman untuk semua jenis kulit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <h2 class="section-title">Katalog 30 Produk Estetik</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Produk akan di-generate oleh JavaScript -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <h2 class="section-title">Ulasan Pelanggan</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-slide active">
+                <p class="testimonial-text">"Sukaa banget sama lip tint-nya! Warnanya pastel tapi pigmented, tahan lama pula. Packagingnya juga aesthetic parah, cocok buat kado!"</p>
+                <p class="testimonial-author">- Anisa, Tulungagung</p>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"Serum stroberry-nya bikin kulitku yang kering jadi lembap dan glowing seharian. Wanginya juga enak banget, nggak menyengat."</p>
+                <p class="testimonial-author">- Rina, Kediri</p>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"Pengiriman cepat, packing aman dan cantik. Cushion-nya ringan banget di wajah, coverage-nya juga bagus untuk sehari-hari."</p>
+                <p class="testimonial-author">- Dinda, Blitar</p>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" placeholder="Masukkan nama Anda">
+                <div class="error-message" id="nameError">Nama wajib diisi!</div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Nomor HP / WhatsApp</label>
+                <input type="tel" id="phone" placeholder="Contoh: 081234567890">
+                <div class="error-message" id="phoneError">Nomor HP wajib diisi dengan benar!</div>
+            </div>
+            <div class="form-group">
+                <label for="message">Pertanyaan / Pesanan</label>
+                <textarea id="message" rows="4" placeholder="Tulis pertanyaan atau produk yang ingin dipesan..."></textarea>
+                <div class="error-message" id="messageError">Pesan tidak boleh kosong!</div>
+            </div>
+            <button type="submit" class="btn-cta" style="width: 100%;">Kirim Pesan</button>
+            <div class="success-message" id="successMessage">
+                ✅ Pesan berhasil dikirim! Kami akan menghubungi Anda via WhatsApp segera.
+            </div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Stroberry Taqina Beauty</h3>
+                <p>Kecantikan alami dengan sentuhan pastel yang menenangkan.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/taqina__" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak & Alamat</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Sumberagung, Rejotangan, Tulungagung, Jawa Timur</p>
+                <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                <p><i class="fas fa-envelope"></i> hello@stroberrytaqina.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Tautan Cepat</h3>
+                <a href="#home">Beranda</a>
+                <a href="#products">Katalog Produk</a>
+                <a href="#contact">Cara Pemesanan</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Stroberry Taqina Beauty. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Data 30 Produk (Skincare & Makeup) ---
+        const products = [
+            { name: "Strawberry Glow Cleanser", category: "Skincare", price: "Rp 45.000", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80", review: "Busanya halus, wajah jadi kesat tapi nggak ketarik!" },
+            { name: "Matcha Calming Toner", category: "Skincare", price: "Rp 55.000", img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=80", review: "Bikin merah-merah di wajah tenang seketika." },
+            { name: "Berry Bright Serum", category: "Skincare", price: "Rp 75.000", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80", review: "Noda hitam memudar dalam 2 minggu, suka!" },
+            { name: "Pastel Green Moisturizer", category: "Skincare", price: "Rp 60.000", img: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=400&q=80", review: "Ringan, cepat meresap, nggak bikin minyakan." },
+            { name: "Strawberry Sunscreen SPF 50", category: "Skincare", price: "Rp 65.000", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=400&q=80", review: "Nggak whitecast, malah bikin glowing alami." },
+            { name: "Lip Tint Matcha Kiss", category: "Makeup", price: "Rp 35.000", img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=400&q=80", review: "Warnanya natural banget, cocok buat daily." },
+            { name: "Cushion Glow Pastel", category: "Makeup", price: "Rp 85.000", img: "https://images.unsplash.com/photo-1631730486784-5b10a140ed5f?auto=format&fit=crop&w=400&q=80", review: "Coverage oke, finishnya dewy cantik." },
+            { name: "Eyeshadow Palette Berry", category: "Makeup", price: "Rp 90.000", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=400&q=80", review: "Pigmented dan blendable, warnanya cantik!" },
+            { name: "Volumizing Mascara", category: "Makeup", price: "Rp 40.000", img: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?auto=format&fit=crop&w=400&q=80", review: "Bulu mata jadi lentik dan nggak gumpal." },
+            { name: "Blush On Cream Strawberry", category: "Makeup", price: "Rp 38.000", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=400&q=80", review: "Warnanya peachy pink, bikin muka seger." },
+            // Generate 20 more products programmatically to reach 30
+        ];
+
+        const additionalProducts = [
+            { name: "Night Repair Essence", category: "Skincare", price: "Rp 80.000", img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=400&q=80", review: "Bangun tidur kulit kenyal banget!" },
+            { name: "Gentle Exfoliating Gel", category: "Skincare", price: "Rp 50.000", img: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=400&q=80", review: "Angkut sel kulit mati tanpa perih." },
+            { name: "Hydrating Face Mist", category: "Skincare", price: "Rp 42.000", img: "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?auto=format&fit=crop&w=400&q=80", review: "Penyelamat kulit kering di ruangan AC." },
+            { name: "Lip Balm Strawberry", category: "Skincare", price: "Rp 25.000", img: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=400&q=80", review: "Bibir lembap seharian, wanginya enak." },
+            { name: "Acne Patch Green Tea", category: "Skincare", price: "Rp 30.000", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=400&q=80", review: "Jerawat kempes dalam semalam, nggak kelihatan." },
+            { name: "Matte Lipstick Pastel", category: "Makeup", price: "Rp 45.000", img: "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?auto=format&fit=crop&w=400&q=80", review: "Matte tapi nggak bikin bibir kering." },
+            { name: "Eyeliner Pen Waterproof", category: "Makeup", price: "Rp 35.000", img: "https://images.unsplash.com/photo-1631214500115-598fc2cb8d2d?auto=format&fit=crop&w=400&q=80", review: "Tahan air dan keringat, nggak luntur." },
+            { name: "Setting Spray Dewy", category: "Makeup", price: "Rp 55.000", img: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=400&q=80", review: "Makeup tahan seharian, finishnya glowing." },
+            { name: "Concealer Brightening", category: "Makeup", price: "Rp 40.000", img: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=400&q=80", review: "Nutup dark circle dengan sempurna." },
+            { name: "Loose Powder Translucent", category: "Makeup", price: "Rp 60.000", img: "https://images.unsplash.com/photo-1515688594390-b649af70d282?auto=format&fit=crop&w=400&q=80", review: "Halus, nggak bikin cakey, kontrol minyak." },
+            { name: "Clay Mask Matcha", category: "Skincare", price: "Rp 55.000", img: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=400&q=80", review: "Pori-pori mengecil, wajah bersih mendalam." },
+            { name: "Sleeping Mask Berry", category: "Skincare", price: "Rp 65.000", img: "https://images.unsplash.com/photo-1570194065650-d99fb4b38b15?auto=format&fit=crop&w=400&q=80", review: "Pagi-pagi kulit langsung cerah dan kenyal." },
+            { name: "Makeup Remover Balm", category: "Skincare", price: "Rp 50.000", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=400&q=80", review: "Lunturin makeup waterproof dengan mudah." },
+            { name: "Brow Pencil Natural", category: "Makeup", price: "Rp 30.000", img: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?auto=format&fit=crop&w=400&q=80", review: "Warnanya pas, gampang dibentuk." },
+            { name: "Highlighter Stick", category: "Makeup", price: "Rp 45.000", img: "https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=400&q=80", review: "Glow-nya elegan, bukan glittery murahan." },
+            { name: "Contour Palette Soft", category: "Makeup", price: "Rp 70.000", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=400&q=80", review: "Warnanya cool tone, pas buat contouring." },
+            { name: "Nail Polish Pastel Pink", category: "Makeup", price: "Rp 28.000", img: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=400&q=80", review: "Warnanya lucu, cepat kering." },
+            { name: "Body Lotion Strawberry", category: "Skincare", price: "Rp 55.000", img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=80", review: "Wangi manis, kulit jadi lembut." },
+            { name: "Hand Cream Matcha", category: "Skincare", price: "Rp 25.000", img: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=400&q=80", review: "Nggak lengket, cocok ditaruh di tas." }
+        ];
+
+        const allProducts = [...products, ...additionalProducts];
+
+        // --- 2. Render 30 Produk ke HTML ---
+        const productsGrid = document.getElementById('productsGrid');
+        allProducts.forEach((product, index) => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy">
+                <div class="product-info">
+                    <div class="product-category">${product.category}</div>
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-price">${product.price}</div>
+                    <div class="product-review">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        "${product.review}"
+                    </div>
+                </div>
+            `;
+            productsGrid.appendChild(card);
+        });
+
+        // --- 3. Animasi Background (Bunga Lily & Stroberi) ---
+        const floatingContainer = document.getElementById('floatingElements');
+        const symbols = ['🌸', '🍓', '🌿', '🍵', '🌷'];
+        for (let i = 0; i < 15; i++) {
+            const el = document.createElement('div');
+            el.className = 'float-item';
+            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            el.style.animationDelay = Math.random() * 5 + 's';
+            el.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            floatingContainer.appendChild(el);
+        }
+
+        // --- 4. Hamburger Menu Toggle ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Tutup menu saat link diklik (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- 5. Testimonial Carousel ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Auto slide setiap 5 detik
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // --- 6. Form Validation ---
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById('name');
+            const phone = document.getElementById('phone');
+            const message = document.getElementById('message');
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            if (name.value.trim() === '') {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (phone.value.trim() === '' || phone.value.length < 10) {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (message.value.trim() === '') {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Simulasi pengiriman sukses
+                successMessage.style.display = 'block';
+                contactForm.reset();
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
